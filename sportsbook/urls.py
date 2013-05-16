@@ -1,4 +1,7 @@
+from django.contrib import admin
+from django.views.generic import TemplateView
 from django.conf.urls import patterns, include, url
+from sportsbook.views import Home
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -6,7 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'sportsbook.views.home', name='home'),
+    url(r'^$', Home.as_view(), name='home'),
     # url(r'^sportsbook/', include('sportsbook.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
