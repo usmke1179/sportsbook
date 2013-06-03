@@ -119,6 +119,7 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
+    'django_tables2'
 )
 
 LOCAL_APPS = (

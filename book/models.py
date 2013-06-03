@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class Bet(models.Model):
     user = models.ForeignKey(User, related_name="bets")
     sport = models.CharField(max_length=255)

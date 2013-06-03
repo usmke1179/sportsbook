@@ -2,7 +2,7 @@ def decimaltoamerican(decimalodds):
     if decimalodds > 2:
         return (decimalodds - 1.) * 100.
     else:
-        return  -100. / (decimalodds - 1.)
+        return -100. / (decimalodds - 1.)
 
 
 def americantodecimal(americanodds):

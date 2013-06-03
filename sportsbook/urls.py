@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.conf.urls import patterns, include, url
 from sportsbook.views import Home
-from book.parsepinnyxml import ParseXML
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
