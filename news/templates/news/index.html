@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <!-- Carousel
+    ================================================== -->
+    <div class="container marketing">
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        {% for story in stories %}
+          {% if forloop.counter <= 5 %}
+            {% if forloop.first %}
+        <div class="item active">
+            {% else %}
+        <div class="item">
+            {% endif %}
+          <a href="{{story.link}}"><img src="{{story.imgurl}}" alt="">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>{{story.headline}}</h1>
+              <p class="lead">{{story.description}}</p>
+            </div>
+          </div>
+          </a>
+        </div>
+          {% if forloop.counter == 5 %}
+      </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div><!-- /.carousel -->
+          {% endif %}
+          {% else %}
+            <hr>
+            <div class="row">
+            <div class="featurette">
+              <div class="span4"><img class=" pull-left" src="{{story.imgurl}}"></div>
+              <div class="span8 pull-right"><a href="{{story.link}}"><h2 class="featurette-heading">{{story.headline}}</h2></a>
+              <p class="lead">{{story.description}}</p></div>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->>
+    <script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+{% endblock content %}
