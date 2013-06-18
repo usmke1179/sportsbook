@@ -160,6 +160,7 @@ LOGGING = {
     }
 }
 
+#PRODUCTION
 DJANGO_ENV = os.environ.get('DJANGO_ENV', None)
 
 if DJANGO_ENV == "PRODUCTION":
@@ -169,3 +170,15 @@ if DJANGO_ENV == "PRODUCTION":
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     S3_URL = 'http://%s.s3.amazonaws.com/' % S3_BUCKET_NAME
     STATIC_URL = S3_URL
+
+#ASSETS: STATIC FILES, MEDIA
+DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
+STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
+DEFAULT_S3_PATH = "media"
+STATIC_S3_PATH = "static"
+
+MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+STATIC_ROOT = "/%s/" % STATIC_S3_PATH
+MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+STATIC_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
