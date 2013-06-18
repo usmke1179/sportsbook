@@ -172,13 +172,7 @@ if DJANGO_ENV == "PRODUCTION":
     STATIC_URL = S3_URL
 
 #ASSETS: STATIC FILES, MEDIA
-DEFAULT_FILE_STORAGE = 's3_folder_storage.s3.DefaultStorage'
-STATICFILES_STORAGE = 's3_folder_storage.s3.StaticStorage'
-DEFAULT_S3_PATH = "media"
-STATIC_S3_PATH = "static"
-
-MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
-STATIC_ROOT = "/%s/" % STATIC_S3_PATH
-MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+MEDIA_URL = STATIC_URL + 'media/'
