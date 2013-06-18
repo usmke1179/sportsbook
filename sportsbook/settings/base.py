@@ -119,7 +119,8 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'south',
-    'django_tables2'
+    'django_tables2',
+    'storages',
 )
 
 LOCAL_APPS = (
@@ -158,3 +159,13 @@ LOGGING = {
         },
     }
 }
+
+DJANGO_ENV = os.environ.get('DJANGO_ENV', None)
+
+if DJANGO_ENV == "PRODUCTION":
+    S3_BUCKET_NAME = os.environ['S3_BUCKET_NAME']
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    S3_URL = 'http://%s.s3.amazonaws.com/' % S3_BUCKET_NAME
+    STATIC_URL = S3_URL
