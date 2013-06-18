@@ -2,7 +2,7 @@ import datetime
 from django_tables2 import SingleTableView
 import pinnaclesports
 import tables
-import models
+# import models
 
 
 class BaseballView(SingleTableView):
