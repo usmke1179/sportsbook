@@ -83,12 +83,12 @@ class Pinnacle(object):
                     event["total"] = float(totals.find("total_points").text) if totals.find("total_points") is not None else None
                     event["overodds"] = int(totals.find("over_adjust").text) if totals.find("over_adjust") is not None else None
                     event["underodds"] = int(totals.find("under_adjust").text) if totals.find("under_adjust") is not None else None
-                event["vml"] = int(bf.adjustedvig(event["vml"], event["hml"])) if event["vml"] is not None else None
-                event["hml"] = int(bf.adjustedvig(event["hml"], event["vml"])) if event["hml"] is not None else None
-                event["vodds"] = int(bf.adjustedvig(event["vodds"], event["hodds"])) if event["vodds"] is not None else None
-                event["hodds"] = int(bf.adjustedvig(event["hodds"], event["vodds"])) if event["hodds"] is not None else None
-                event["overodds"] = int(bf.adjustedvig(event["overodds"], event["underodds"])) if event["overodds"] is not None else None
-                event["underodds"] = int(bf.adjustedvig(event["underodds"], event["overodds"])) if event["underodds"] is not None else None
+                event["vml"] = int(bf.adjustedvig(event.get("vml"), event.get("hml"))) if event.get("vml") is not None else None
+                event["hml"] = int(bf.adjustedvig(event.get("hml"), event.get("vml"))) if event.get("hml") is not None else None
+                event["vodds"] = int(bf.adjustedvig(event.get("vodds"), event.get("hodds"))) if event.get("vodds") is not None else None
+                event["hodds"] = int(bf.adjustedvig(event.get("hodds"), event.get("vodds"))) if event.get("hodds") is not None else None
+                event["overodds"] = int(bf.adjustedvig(event.get("overodds"), event.get("underodds"))) if event.get("overodds") is not None else None
+                event["underodds"] = int(bf.adjustedvig(event.get("underodds"), event.get("overodds"))) if event.get("underodds") is not None else None
             lines.append(event)
         return lines
 

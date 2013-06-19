@@ -14,24 +14,43 @@ class BaseballView(SingleTableView):
     display = []
     for line in mlb_lines:
         if "periodnum" in line:
-            display.append({
-                "gamekey": line["gamenumber"]+str(line["periodnum"]),
-                "gametime": line["eventtime"],
-                "rot": line["vrot"],
-                "team": line["vteam"],
-                "pitcher": line["vpitcher"],
-                "ml": line["vml"],
-                "rl": str(line["vspread"]) + " " + str(line["vodds"]),
-                "total": "o" + str(line["total"]) + " " + str(line["overodds"]),
-            })
-            display.append({
-                "gamekey": line["gamenumber"]+str(line["periodnum"]),
-                "rot": line["hrot"],
-                "team": line["hteam"],
-                "pitcher": line["hpitcher"],
-                "ml": line["hml"],
-                "rl": str(line["hspread"]) + " " + str(line["hodds"]),
-                "total": "u" + str(line["total"]) + " " + str(line["underodds"]),
-            })
+            if line["periodnum"] == 0:
+                rowdict = {}
+                if "gamenumber" in line:
+                    rowdict["gamekey"] = line["gamenumber"]+str(line["periodnum"])
+                if "eventtime" in line:
+                    rowdict["gametime"] = line["eventtime"]
+                if "vrot" in line:
+                    rowdict["rot"] = line["vrot"]
+                if "vteam" in line:
+                    rowdict["team"] = line["vteam"]
+                if "vpitcher" in line:
+                    rowdict["pitcher"] = line["vpitcher"]
+                if "vml" in line:
+                    rowdict["ml"] = line["vml"]
+                if "vspread" in line:
+                    rowdict["rl"] = str(line["vspread"]) + str(line["vodds"])
+                if "total" in line:
+                    rowdict["total"] = "o" + str(line["total"]) + " " + str(line["overodds"])
+                display.append(rowdict)
+                rowdict = {}
+                if "gamenumber" in line:
+                    rowdict["gamekey"] = line["gamenumber"]+str(line["periodnum"])
+                if "hrot" in line:
+                    rowdict["rot"] = line["hrot"]
+                if "hteam" in line:
+                    rowdict["team"] = line["hteam"]
+                if "hpitcher" in line:
+                    rowdict["pitcher"] = line["hpitcher"]
+                if "hml" in line:
+                    rowdict["ml"] = line["hml"]
+                if "hspread" in line:
+                    rowdict["rl"] = str(line["hspread"]) + str(line["hodds"])
+                if "total" in line:
+                    rowdict["total"] = "u" + str(line["total"]) + " " + str(line["underodds"])
+                display.append(rowdict)
+
     table_data = display
+    table_pagination = False
     table_class = tables.BaseballLinesTable
+
