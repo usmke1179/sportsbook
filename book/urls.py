@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from .views import BaseballView, BasketballView, FootballView#, HockeyView
+from .views import BaseballView, BasketballView, FootballView  # , HockeyView
 
 urlpatterns = patterns(
     '',

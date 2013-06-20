@@ -44,10 +44,7 @@ a:hover {
 .carousel-caption {
   background-color: #333333;
   position: static;
-  max-width: 550px;
-  padding: 0 100px;
-  margin-top: 380px;
-  margin-left: 100px;
+  margin-top: 400px;
 }
 .carousel-caption h2,
 .carousel-caption .lead {
@@ -66,6 +63,12 @@ a:hover {
 -------------------------------------------------- */
 
 /* Center align the text within the three columns below the carousel */
+.marketing {
+  margin-top: 70px;
+}
+.line-table {
+  margin-top: 70px;
+}
 .marketing .span4 {
   text-align: center;
 }
