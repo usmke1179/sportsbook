@@ -54,7 +54,7 @@ class BaseballView(SingleTableView):
                     display.append(rowdict)
         return display
 
-    table_data = get_queryset()
+    # table_data = get_queryset()
 
 
 class BasketballView(SingleTableView):
