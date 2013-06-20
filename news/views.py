@@ -4,7 +4,7 @@ from . import espyn
 
 
 class NewsView(ListView):
-    template_name = "news/index.html"
+    template_name = "news/news.html"
     context_object_name = "stories"
     paginate_by = 20
 
