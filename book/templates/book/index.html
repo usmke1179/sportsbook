@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container" >
-      {% load render_table from django_tables2 %}
-      {% render_table table %}
-    </div>
+    <form method = "POST" action="/">
+        <div class="container" >
+          {% load render_table from django_tables2 %}
+          {% render_table table %}
+            <div class="pull-right">
+                <select name="bettype">
+                    <option value = "single">Single Bet</option>
+                    <option value = "teaser">Teaser</option>
+                    <option value = "parlay">Parlay</option>
+                    <option value = "ar">Action Reverse</option>
+                </select>
+                <input type="submit" value="Continue">
+            </div>
+        </div>
+    </form>
 {% endblock content %}

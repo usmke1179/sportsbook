@@ -36,3 +36,48 @@ class BaseballLinesTable(tables.Table):
         attrs = {"class": "table table-bordered table-striped table-hover"}
         empty_text = "There are no games available."
         exclude = ("gamekey", )
+
+
+class BasketballLinesTable(tables.Table):
+    gamekey = tables.Column()
+    gametime = tables.DateTimeColumn(verbose_name="Game Time", orderable=False)
+    rot = tables.Column(verbose_name="Rot", orderable=False)
+    team = tables.Column(verbose_name="Team", orderable=False)
+    ml = CustomCheckBoxColumn(verbose_name="Moneyline", orderable=False)
+    rl = CustomCheckBoxColumn(verbose_name="Runline", orderable=False)
+    total = CustomCheckBoxColumn(verbose_name="Total", orderable=False)
+
+    class Meta:
+        attrs = {"class": "table table-bordered table-striped table-hover"}
+        empty_text = "There are no games available."
+        exclude = ("gamekey", )
+
+
+class FootballLinesTable(tables.Table):
+    gamekey = tables.Column()
+    gametime = tables.DateTimeColumn(verbose_name="Game Time", orderable=False)
+    rot = tables.Column(verbose_name="Rot", orderable=False)
+    team = tables.Column(verbose_name="Team", orderable=False)
+    ml = CustomCheckBoxColumn(verbose_name="Moneyline", orderable=False)
+    rl = CustomCheckBoxColumn(verbose_name="Runline", orderable=False)
+    total = CustomCheckBoxColumn(verbose_name="Total", orderable=False)
+
+    class Meta:
+        attrs = {"class": "table table-bordered table-striped table-hover"}
+        empty_text = "There are no games available."
+        exclude = ("gamekey", )
+
+
+class HockeyLinesTable(tables.Table):
+    gamekey = tables.Column()
+    gametime = tables.DateTimeColumn(verbose_name="Game Time", orderable=False)
+    rot = tables.Column(verbose_name="Rot", orderable=False)
+    team = tables.Column(verbose_name="Team", orderable=False)
+    ml = CustomCheckBoxColumn(verbose_name="Moneyline", orderable=False)
+    rl = CustomCheckBoxColumn(verbose_name="Runline", orderable=False)
+    total = CustomCheckBoxColumn(verbose_name="Total", orderable=False)
+
+    class Meta:
+        attrs = {"class": "table table-bordered table-striped table-hover"}
+        empty_text = "There are no games available."
+        exclude = ("gamekey", )
