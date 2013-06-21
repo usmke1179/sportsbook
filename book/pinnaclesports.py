@@ -1,6 +1,6 @@
 import urllib
 import datetime
-import models
+# import models
 from xml.etree import ElementTree as ET
 # from django.db import models
 import bettingformulas as bf
@@ -69,26 +69,27 @@ class Pinnacle(object):
                         event["hpitcher"] = participants.find("pitcher").text if participants.find("pitcher") is not None else None
                     event["hrot"] = int(participants.find("rotnum").text) if participants.find("rotnum") is not None else None
             for periods in events.iter("period"):
-                event["periodnum"] = int(periods.find("period_number").text) if periods.find("period_number") is not None else None
-                event["perioddesc"] = periods.find("period_description").text if periods.find("period_description") is not None else None
-                for moneylines in periods.iter("moneyline"):
-                    event["vml"] = int(moneylines.find("moneyline_visiting").text) if moneylines.find("moneyline_visiting") is not None else None
-                    event["hml"] = int(moneylines.find("moneyline_home").text) if moneylines.find("moneyline_home") is not None else None
-                for spreads in periods.iter("spread"):
-                    event["vspread"] = float(spreads.find("spread_visiting").text) if spreads.find("spread_visiting") is not None else None
-                    event["vodds"] = int(spreads.find("spread_adjust_visiting").text) if spreads.find("spread_adjust_visiting") is not None else None
-                    event["hspread"] = float(spreads.find("spread_home").text) if spreads.find("spread_home") is not None else None
-                    event["hodds"] = int(spreads.find("spread_adjust_home").text) if spreads.find("spread_adjust_home") is not None else None
-                for totals in periods.iter("total"):
-                    event["total"] = float(totals.find("total_points").text) if totals.find("total_points") is not None else None
-                    event["overodds"] = int(totals.find("over_adjust").text) if totals.find("over_adjust") is not None else None
-                    event["underodds"] = int(totals.find("under_adjust").text) if totals.find("under_adjust") is not None else None
-                event["vml"] = int(bf.adjustedvig(event.get("vml"), event.get("hml"))) if event.get("vml") is not None else None
-                event["hml"] = int(bf.adjustedvig(event.get("hml"), event.get("vml"))) if event.get("hml") is not None else None
-                event["vodds"] = int(bf.adjustedvig(event.get("vodds"), event.get("hodds"))) if event.get("vodds") is not None else None
-                event["hodds"] = int(bf.adjustedvig(event.get("hodds"), event.get("vodds"))) if event.get("hodds") is not None else None
-                event["overodds"] = int(bf.adjustedvig(event.get("overodds"), event.get("underodds"))) if event.get("overodds") is not None else None
-                event["underodds"] = int(bf.adjustedvig(event.get("underodds"), event.get("overodds"))) if event.get("underodds") is not None else None
+                if int(periods.find("period_number").text) == 0:
+                    event["periodnum"] = int(periods.find("period_number").text) if periods.find("period_number") is not None else None
+                    event["perioddesc"] = periods.find("period_description").text if periods.find("period_description") is not None else None
+                    for moneylines in periods.iter("moneyline"):
+                        event["vml"] = int(moneylines.find("moneyline_visiting").text) if moneylines.find("moneyline_visiting") is not None else None
+                        event["hml"] = int(moneylines.find("moneyline_home").text) if moneylines.find("moneyline_home") is not None else None
+                    for spreads in periods.iter("spread"):
+                        event["vspread"] = float(spreads.find("spread_visiting").text) if spreads.find("spread_visiting") is not None else None
+                        event["vodds"] = int(spreads.find("spread_adjust_visiting").text) if spreads.find("spread_adjust_visiting") is not None else None
+                        event["hspread"] = float(spreads.find("spread_home").text) if spreads.find("spread_home") is not None else None
+                        event["hodds"] = int(spreads.find("spread_adjust_home").text) if spreads.find("spread_adjust_home") is not None else None
+                    for totals in periods.iter("total"):
+                        event["total"] = float(totals.find("total_points").text) if totals.find("total_points") is not None else None
+                        event["overodds"] = int(totals.find("over_adjust").text) if totals.find("over_adjust") is not None else None
+                        event["underodds"] = int(totals.find("under_adjust").text) if totals.find("under_adjust") is not None else None
+                    event["vml"] = int(bf.adjustedvig(event.get("vml"), event.get("hml"))) if event.get("vml") is not None else None
+                    event["hml"] = int(bf.adjustedvig(event.get("hml"), event.get("vml"))) if event.get("hml") is not None else None
+                    event["vodds"] = int(bf.adjustedvig(event.get("vodds"), event.get("hodds"))) if event.get("vodds") is not None else None
+                    event["hodds"] = int(bf.adjustedvig(event.get("hodds"), event.get("vodds"))) if event.get("hodds") is not None else None
+                    event["overodds"] = int(bf.adjustedvig(event.get("overodds"), event.get("underodds"))) if event.get("overodds") is not None else None
+                    event["underodds"] = int(bf.adjustedvig(event.get("underodds"), event.get("overodds"))) if event.get("underodds") is not None else None
             lines.append(event)
         return lines
 
