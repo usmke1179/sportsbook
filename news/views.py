@@ -1,5 +1,5 @@
 from django.views.generic import ListView
-from django.core.cache import cache
+# from django.core.cache import cache
 from sportsbook.settings import base
 from . import espyn
 
@@ -10,9 +10,9 @@ class NewsView(ListView):
     paginate_by = 20
 
     def get_queryset(self):
-        if cache.get("news") is not None:
-            return cache.get("news")
-        else:
+        # if cache.get("news") is not None:
+        #     return cache.get("news")
+        # else:
             api_key = "hs6u5zg857xbyqdwp5dt6t5s"
             espn_object = espyn.ESPN(api_key)
             h = espn_object.headlines()
@@ -34,5 +34,5 @@ class NewsView(ListView):
                 else:
                     d["imgurl"] = base.STATIC_URL + "images/espn.jpg"
                     queryset.append(d)
-            cache.set("news", queryset)
+            # cache.set("news", queryset)
             return queryset
