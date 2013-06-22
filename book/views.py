@@ -1,4 +1,4 @@
-# from django.core.cache import cache
+from django.core.cache import cache
 from django_tables2 import SingleTableView
 import pinnaclesports
 import tables
@@ -12,13 +12,14 @@ class BaseballView(SingleTableView):
     table_class = tables.BaseballLinesTable
 
     def get_queryset(self):
-        # if cache.get("mlbLines") is not None:
-        #     return cache.get("mlbLines")
-        # else:
+        if cache.get("mlbLines") is not None:
+            return cache.get("mlbLines")
+        else:
             pinnacle_object = pinnaclesports.Pinnacle()
             mlb_lines = pinnacle_object.parse_xml(sporttype="baseball", sportsubtype="mlb")
+            lines_by_date = sorted(mlb_lines, key=lambda k: k["eventtime"])
             display = []
-            for line in mlb_lines:
+            for line in lines_by_date:
                 if "periodnum" in line:
                     if line["periodnum"] == 0:
                         row1 = {}
@@ -55,7 +56,7 @@ class BaseballView(SingleTableView):
                         if "total" in line:
                             row2["total"] = "u" + str(line["total"]) + " " + str(line["underodds"])
                         display.append(row2)
-            # cache.set("mlbLines", display)
+            cache.set("mlbLines", display)
             return display
 
 
@@ -66,9 +67,9 @@ class BasketballView(SingleTableView):
     table_class = tables.BasketballLinesTable
 
     def get_queryset(self):
-        # if cache.get("nbaLines") is not None:
-        #     return cache.get("nbaLines")
-        # else:
+        if cache.get("nbaLines") is not None:
+            return cache.get("nbaLines")
+        else:
             pinnacle_object = pinnaclesports.Pinnacle()
             nba_lines = pinnacle_object.parse_xml(sporttype="basketball", sportsubtype="nba")
             display = []
@@ -105,7 +106,7 @@ class BasketballView(SingleTableView):
                         if "total" in line:
                             rowdict["total"] = "u" + str(line["total"]) + " " + str(line["underodds"])
                         display.append(rowdict)
-            # cache.set("nbaLines", display)
+            cache.set("nbaLines", display)
             return display
 
 
@@ -116,9 +117,9 @@ class FootballView(SingleTableView):
     table_class = tables.FootballLinesTable
 
     def get_queryset(self):
-        # if cache.get("nflLines") is not None:
-        #     return cache.get("nflLines")
-        # else:
+        if cache.get("nflLines") is not None:
+            return cache.get("nflLines")
+        else:
             pinnacle_object = pinnaclesports.Pinnacle()
             nfl_lines = pinnacle_object.parse_xml(sporttype="football", sportsubtype="nfl")
             display = []
@@ -155,5 +156,5 @@ class FootballView(SingleTableView):
                         if "total" in line:
                             rowdict["total"] = "u" + str(line["total"]) + " " + str(line["underodds"])
                         display.append(rowdict)
-            # cache.set("nflLines", display)
+            cache.set("nflLines", display)
             return display
