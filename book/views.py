@@ -36,7 +36,7 @@ class BaseballView(SingleTableView):
                         if "vml" in line:
                             row1["ml"] = line["vml"]
                         if "vspread" in line:
-                            row1["rl"] = str(line["vspread"]) + str(line["vodds"])
+                            row1["rl"] = str(line["vspread"]) + " " + str(line["vodds"])
                         if "total" in line:
                             row1["total"] = "o" + str(line["total"]) + " " + str(line["overodds"])
                         display.append(row1)
@@ -52,7 +52,7 @@ class BaseballView(SingleTableView):
                         if "hml" in line:
                             row2["ml"] = line["hml"]
                         if "hspread" in line:
-                            row2["rl"] = str(line["hspread"]) + str(line["hodds"])
+                            row2["rl"] = str(line["hspread"]) + " " + str(line["hodds"])
                         if "total" in line:
                             row2["total"] = "u" + str(line["total"]) + " " + str(line["underodds"])
                         display.append(row2)
@@ -88,7 +88,7 @@ class BasketballView(SingleTableView):
                         if "vml" in line:
                             rowdict["ml"] = line["vml"]
                         if "vspread" in line:
-                            rowdict["rl"] = str(line["vspread"]) + str(line["vodds"])
+                            rowdict["rl"] = str(line["vspread"]) + " " + str(line["vodds"])
                         if "total" in line:
                             rowdict["total"] = "o" + str(line["total"]) + " " + str(line["overodds"])
                         display.append(rowdict)
@@ -102,7 +102,7 @@ class BasketballView(SingleTableView):
                         if "hml" in line:
                             rowdict["ml"] = line["hml"]
                         if "hspread" in line:
-                            rowdict["rl"] = str(line["hspread"]) + str(line["hodds"])
+                            rowdict["rl"] = str(line["hspread"]) + " " + str(line["hodds"])
                         if "total" in line:
                             rowdict["total"] = "u" + str(line["total"]) + " " + str(line["underodds"])
                         display.append(rowdict)
@@ -138,7 +138,7 @@ class FootballView(SingleTableView):
                         if "vml" in line:
                             rowdict["ml"] = line["vml"]
                         if "vspread" in line:
-                            rowdict["rl"] = str(line["vspread"]) + str(line["vodds"])
+                            rowdict["rl"] = str(line["vspread"]) + " " + str(line["vodds"])
                         if "total" in line:
                             rowdict["total"] = "o" + str(line["total"]) + " " + str(line["overodds"])
                         display.append(rowdict)
@@ -152,7 +152,7 @@ class FootballView(SingleTableView):
                         if "hml" in line:
                             rowdict["ml"] = line["hml"]
                         if "hspread" in line:
-                            rowdict["rl"] = str(line["hspread"]) + str(line["hodds"])
+                            rowdict["rl"] = str(line["hspread"]) + " " + str(line["hodds"])
                         if "total" in line:
                             rowdict["total"] = "u" + str(line["total"]) + " " + str(line["underodds"])
                         display.append(rowdict)
