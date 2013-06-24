@@ -6,5 +6,6 @@ urlpatterns = patterns(
     '',
     url(r'^$', include('news.urls')),
     url(r'^sportsbook/', include('book.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

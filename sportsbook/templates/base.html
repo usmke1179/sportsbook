@@ -10,7 +10,7 @@
   <body>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container">
           <a class="brand" href="/" name="top">Sportsbook</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
@@ -22,19 +22,24 @@
               <li class="divider-vertical"></li>
               <li><a href="{% url "football" %}"><i class="icon-tags icon-white"></i> NFL</a></li>
               <li class="divider-vertical"></li>
-<!--               <li><a href=""><i class="icon-tags icon-white"></i> NHL</a></li>
-              <li class="divider-vertical"></li>
             </ul>
-            <div class="btn-group pull-right">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="icon-user"></i> admin <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><i class="icon-wrench"></i> Settings</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><i class="icon-share"></i> Logout</a></li>
-              </ul>
-            </div> -->
+            <ul class="nav pull-right">
+              <li><a href="/accounts/register">Sign Up</a></li>
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding: 15px">
+                  <form method="post" action="login" accept-charset="UTF-8">
+                    <input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
+                    <input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+                    <input style="float: left; margin-right: 10px;" type="checkbox" name="remember-me" id="remember-me" value="1">
+                    <label class="string optional" for="user_remember_me"> Remember me</label>
+                    <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Sign In">
+                  </form>
+                </div>
+              </li>
+            </ul>
+
           </div>
           <!--/.nav-collapse -->
         </div>
@@ -43,10 +48,12 @@
       <!--/.navbar-inner -->
     </div>
     <!--/.navbar -->
-
-{% block content %}
-{% endblock content %}
-
-
+<div class="container">
+  {% block content %}
+  {% endblock content %}
+</div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}extra.js"></script>
   </body>
 </html>

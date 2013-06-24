@@ -75,7 +75,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -85,7 +85,7 @@ SECRET_KEY = 'll+iq7@i4$$(&=u#p6m4r25@k-mx@apdlky@zey-p*=-r21@wp'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,11 +121,14 @@ THIRD_PARTY_APPS = (
     'south',
     'django_tables2',
     'storages',
+    'crispy_forms',
+    'registration',
 )
 
 LOCAL_APPS = (
     'book',
     'news',
+    'accounts',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -160,7 +163,10 @@ LOGGING = {
     }
 }
 
+ACCOUNT_ACTIVATION_DAYS = 7
 
+
+# Cache
 def get_cache():
     import os
     try:
@@ -184,7 +190,7 @@ def get_cache():
 
 CACHES = get_cache()
 
-#PRODUCTION
+# Production
 DJANGO_ENV = os.environ.get('DJANGO_ENV', None)
 
 if DJANGO_ENV == "PRODUCTION":
@@ -197,3 +203,10 @@ if DJANGO_ENV == "PRODUCTION":
 
     STATIC_URL = 'http://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    DEFAULT_FROM_EMAIL = 'yee.brianj@gmail.com'
