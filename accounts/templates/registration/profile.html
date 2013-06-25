@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if request.user.is_authenticated %}
+Login worked
+{% endif %}
 My Profile
 {% endblock %}

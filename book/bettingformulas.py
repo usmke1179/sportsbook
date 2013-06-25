@@ -38,7 +38,7 @@ def novig(resultside, otherside):
 
 
 def adjustedvig(resultside, otherside):
-    adjusted = novig(resultside, otherside) + .024
+    adjusted = novig(resultside, otherside) + .025
     if adjusted <= .5:
         return (100. * (1. - adjusted)) / adjusted
     elif adjusted > .5:

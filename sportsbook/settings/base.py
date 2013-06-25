@@ -165,13 +165,6 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'app15686848@heroku.com'
-EMAIL_HOST_PASSWORD = 'aeopi5fn'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'yee.brianj@gmail.com'
-
 
 # Cache
 def get_cache():
