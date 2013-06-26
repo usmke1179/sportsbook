@@ -5,6 +5,7 @@
         <div class="container line-table" >
           {% load render_table from django_tables2 %}
           {% render_table table %}
+          {% if user.is_authenticated %}
             <div class="pull-right">
                 <select name="bettype">
                     <option value = "single">Single Bet</option>
@@ -14,6 +15,7 @@
                 </select>
                 <input type="submit" value="Continue">
             </div>
+          {% endif %}
         </div>
     </form>
 {% endblock content %}

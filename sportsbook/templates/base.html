@@ -23,6 +23,18 @@
               <li><a href="{% url "football" %}"><i class="icon-tags icon-white"></i> NFL</a></li>
               <li class="divider-vertical"></li>
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="nav pull-right">
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-user icon-white"></i> My Account <strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url "profile" %}">My Profile</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url "auth_logout" %}">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
             <ul class="nav pull-right">
               <li><a href="{% url "registration_register" %}">Sign Up</a></li>
               <li class="divider-vertical"></li>
@@ -40,7 +52,7 @@
                 </div>
               </li>
             </ul>
-
+            {% endif %}
           </div>
           <!--/.nav-collapse -->
         </div>
