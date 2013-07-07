@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method = "POST" action="/">
+        <div class="container line-table" >
+          {% load render_table from django_tables2 %}
+          {% render_table table %}
+          {% if user.is_authenticated %}
+            <div class="pull-right">
+                <input type="submit" value="Continue">
+            </div>
+          {% endif %}
+        </div>
+    </form>
+{% endblock content %}

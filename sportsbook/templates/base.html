@@ -16,12 +16,14 @@
             <ul class="nav">
               <li><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
               <li class="divider-vertical"></li>
-              <li><a href="{% url "baseball" %}"><i class="icon-tags icon-white"></i> MLB</a></li>
-              <li class="divider-vertical"></li>
-              <li><a href="{% url "basketball" %}"><i class="icon-tags icon-white"></i> NBA</a></li>
-              <li class="divider-vertical"></li>
-              <li><a href="{% url "football" %}"><i class="icon-tags icon-white"></i> NFL</a></li>
-              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-tags icon-white"></i> Odds</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url "baseball" %}">MLB</a></li>
+                  <li><a href="{% url "basketball" %}">NBA</a></li>
+                  <li><a href="{% url "football" %}">NFL</a></li>
+                </ul>
+              </li>
             </ul>
             {% if user.is_authenticated %}
             <ul class="nav pull-right">

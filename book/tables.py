@@ -44,7 +44,7 @@ class BasketballLinesTable(tables.Table):
     rot = tables.Column(verbose_name="Rot", orderable=False)
     team = tables.Column(verbose_name="Team", orderable=False)
     ml = CustomCheckBoxColumn(verbose_name="Moneyline", orderable=False)
-    rl = CustomCheckBoxColumn(verbose_name="Runline", orderable=False)
+    rl = CustomCheckBoxColumn(verbose_name="Spread", orderable=False)
     total = CustomCheckBoxColumn(verbose_name="Total", orderable=False)
 
     class Meta:
@@ -59,7 +59,7 @@ class FootballLinesTable(tables.Table):
     rot = tables.Column(verbose_name="Rot", orderable=False)
     team = tables.Column(verbose_name="Team", orderable=False)
     ml = CustomCheckBoxColumn(verbose_name="Moneyline", orderable=False)
-    rl = CustomCheckBoxColumn(verbose_name="Runline", orderable=False)
+    rl = CustomCheckBoxColumn(verbose_name="Spread", orderable=False)
     total = CustomCheckBoxColumn(verbose_name="Total", orderable=False)
 
     class Meta:

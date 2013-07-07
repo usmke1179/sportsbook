@@ -1,13 +1,12 @@
 from django.core.cache import cache
 from django_tables2 import SingleTableView
-import pinnaclesports
-import tables
-import models
+from . import pinnaclesports
+from . import tables
+from . import models
 
 
 class BaseballView(SingleTableView):
     template_name = "book/lines.html"
-    model = models.BaseballLine
     table_pagination = False
     table_class = tables.BaseballLinesTable
 
@@ -62,7 +61,6 @@ class BaseballView(SingleTableView):
 
 class BasketballView(SingleTableView):
     template_name = "book/lines.html"
-    model = models.BasketballLine
     table_pagination = False
     table_class = tables.BasketballLinesTable
 
@@ -112,7 +110,6 @@ class BasketballView(SingleTableView):
 
 class FootballView(SingleTableView):
     template_name = "book/lines.html"
-    model = models.FootballLine
     table_pagination = False
     table_class = tables.FootballLinesTable
 
